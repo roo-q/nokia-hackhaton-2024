@@ -9,6 +9,8 @@ HEADERS = {
 }
 
 class Matrix():
+	__slots__ = ('rows', 'columns', 'size')
+
 	def __init__(self, data: list[list[int]]) -> None:
 		self.rows = data
 		self.columns = [[row[cell] for row in data] for cell in range(len(data[0]))]
