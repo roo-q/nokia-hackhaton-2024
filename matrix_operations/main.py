@@ -70,6 +70,7 @@ def main() -> None:
 	for operation in operations:
 		print(operation)
 		print(eval(operation, matrices))
+		print('') # could've just used end='\n\n'
 
 
 if __name__ == '__main__':
