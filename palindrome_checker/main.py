@@ -22,7 +22,7 @@ def process_word(word: str) -> None:
     is_palindrome = start == end
     print(f'{"YES" if is_palindrome else "NO"}, {len(set(word_as_char_list)) if is_palindrome else -1}')
 
-def main():
+def main() -> None:
     with open('input.txt', 'r', encoding='utf8') as file:
       list(map(process_word, file))
         # [process_word(line) for line in file]
