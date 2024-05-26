@@ -1,7 +1,5 @@
 from operator import methodcaller, truth
-from functools import singledispatchmethod
 from typing import Optional, Self
-from tkinter import Tk, ttk, Frame, NSEW, Button, Label
 from enum import Enum
 
 MOVE_STRAIGHT_COST = 10
@@ -20,17 +18,8 @@ class i2():
 	def __repr__(self) -> str:
 		return f'({self.x}, {self.y})'
 	
-	def __add__(self, other: Self | tuple[int, int]) -> 'i2':
-		try:
-			return i2(self.x + other.x, self.y + other.y)
-		except AttributeError:
-			return i2(self.x + other[0], self.y + other[1])
-		
-	def __sub__(self, other: Self | tuple[int, int]) -> 'i2':
-		try:
-			return i2(self.x - other.x, self.y - other.y)
-		except AttributeError:
-			return i2(self.x - other[0], self.y - other[1])
+	def __add__(self, other: Self) -> 'i2':
+		return i2(self.x + other.x, self.y + other.y)
 	
 	def __eq__(self, other: object) -> bool:
 		return hash(self) == hash(other)
@@ -74,17 +63,10 @@ class GridTile():
 	def f_cost(self) -> int:
 		return self.g_cost + self.h_cost
 
-def index_2d_on_1d[T](list: list[T], idx: i2, width: int) -> Optional[T]:
-	try:
-		return list[idx.x + idx.y * width]
-	except IndexError: return None
-
-def flatten_2d[T](list: list[list[T]]) -> list[T]:
-	return [cell for row in list for cell in row]
-
 def a_star(tiles: list[list[GridTile]], start: GridTile, end: GridTile):
-	for tile in flatten_2d(tiles):
-		tile.h_cost = tile.position.distance_from(end.position)
+	for row in tiles:
+		for tile in row:
+			tile.h_cost = tile.position.distance_from(end.position)
 
 	search_queue = [start]
 	searched: set[GridTile] = set()
@@ -103,18 +85,9 @@ def a_star(tiles: list[list[GridTile]], start: GridTile, end: GridTile):
 			ret = []
 
 			while tile != start:
-				# ret.append(tile)
 				dir, tile = connections[tile]
 				ret.append(dir)
 			return ret
-			# current_direction, current_tile = connections[end]
-			# path: list[Direction] = []
-
-			# while current_tile != start:
-			# 	path.append(current_direction)
-			# 	current_direction, current_tile = connections[current_tile]
-			
-			# return path
 		
 		search_queue.remove(current)
 		searched.add(current)
@@ -158,48 +131,18 @@ def main() -> None:
 
 			raw_maps[current_map].append(line)
 
-	for k,v in raw_maps.items():
-		print(k, *v, sep='\n')
-		break
-	
-	raw_map = raw_maps['A']
-	# map_data = [GridTile(i2(x,y), cell) for y, row in enumerate(raw_map) for x, cell in enumerate(row)]
-	# start = next(tile for tile in map_data if tile.type == TileType.START)
-	# end = next(tile for tile in map_data if tile.type == TileType.GOAL)
-	map_data = [[GridTile(i2(x,y), cell) for x, cell in enumerate(row)] for y, row in enumerate(raw_map)]
-	start = next(cell for row in map_data for cell in row if cell.type == TileType.START)
-	end = next(cell for row in map_data for cell in row if cell.type == TileType.GOAL)
-	path: reversed[GridTile] = reversed(a_star(map_data, start, end))
+	# for k,v in raw_maps.items():
+	# 	print(k, *v, sep='\n')
+	# 	break
 
-	path = [Direction.UP if dir == Direction.DOWN else Direction.DOWN if dir == Direction.UP else dir for dir in path]
+	for key, value in raw_maps.items():
+		map_data = [[GridTile(i2(x,y), cell) for x, cell in enumerate(row)] for y, row in enumerate(value)]
+		start = next(cell for row in map_data for cell in row if cell.type == TileType.START)
+		end = next(cell for row in map_data for cell in row if cell.type == TileType.GOAL)
+		path = [Direction.UP if dir == Direction.DOWN else Direction.DOWN if dir == Direction.UP else dir for dir in reversed(a_star(map_data, start, end))]
 
-	print(f'S {" ".join([dir.name[0] for dir in path])} G')
-	# previous_position = start.position
-	# for tile in path:
-	# 	print(previous_position)
-	# 	# previous_position += tile.position
-	# 	print(f'{tile.position}-{previous_position} = {tile.position-previous_position}')
-	# 	previous_position = tile.position - previous_position
+		print(key, f'S {" ".join([dir.name[0] for dir in path])} G', sep='\n')
 
-
-#A
-# # # # # # #
-# S . . . . #
-# # . # # . #
-# . . # . . #
-# . . . # # #
-# . # G . . #
-# # # # # # #
-
-#S R D D D R D G
-
-#######
-#S....#
-##.##.#
-#..#..#
-#...###
-#.#G..#
-#######
 
 if __name__ == '__main__':
 	main()
