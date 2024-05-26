@@ -5,7 +5,6 @@
 
 from operator import methodcaller, truth
 from enum import Enum
-from typing import Optional, TypeGuard
 from collections.abc import Iterator, Iterable
 
 class i2():
