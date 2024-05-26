@@ -5,7 +5,6 @@
 
 from operator import methodcaller, truth
 from enum import Enum
-from collections.abc import Iterator, Iterable
 
 class i2():
 	MOVE_DIAGONAL_COST	= 14
@@ -61,7 +60,7 @@ class MazeTile():
 		self.position		= position
 		self.maze			= maze
 		self.traversable	= type != TileType.OBSTACKLE
-		self.g_cost = 0
+		self.g_cost			= 0
 	
 	@property
 	def h_cost(self) -> int:
@@ -82,21 +81,7 @@ class MazeTile():
 		
 		return neighbors
 
-class MazeIterator(Iterator):
-	__slots__ = ('maze', 'x', 'y')
-
-	def __init__(self, maze: 'Maze') -> None:
-		self.maze = maze
-		self.x = iter(range(len(maze.tiles[0])))
-		self.y = iter(range(len(maze.tiles)))
-	
-	def __next__(self) -> MazeTile:
-		x = next(self.x)
-		y = next(self.y)
-
-		return self.maze.tiles[y][x]
-
-class Maze(Iterable):
+class Maze():
 	__slots__ = ('tiles', 'start', 'end')
 
 	def __init__(self, raw_data: list[str]) -> None:
@@ -156,9 +141,6 @@ class Maze(Iterable):
 
 	def __getitem__(self, idx: i2) -> MazeTile:
 		return self.tiles[idx.y][idx.x]
-	
-	def __iter__(self) -> MazeIterator:
-		return MazeIterator(self)
 	
 	def __str__(self) -> str:
 		return '\n'.join(' '.join(tile.type.value for tile in row) for row in self.tiles)
