@@ -45,6 +45,7 @@ class TileType(Enum):
 	GOAL		= 'G'
 	PATH		= '.'
 	OBSTACKLE	= '#'
+	INVALID		= ''
 
 class MazeTile():
 	__slots__ = (
@@ -84,8 +85,10 @@ class MazeTile():
 class Maze():
 	__slots__ = ('tiles', 'start', 'end')
 
-	def __init__(self, raw_data: list[str]) -> None:
-		self.tiles = [[self._register_tile(TileType(cell), i2(x,y)) for x, cell in enumerate(row)] for y, row in enumerate(raw_data)]
+	def __init__(self) -> None:
+		self.tiles: list[list[MazeTile]] = []
+		self.start = MazeTile(TileType.INVALID, i2(0, 0), self)
+		self.end = MazeTile(TileType.INVALID, i2(0, 0), self)
 	
 	def solve_a_star(self) -> list[Direction]:
 		search_queue = [self.start]
@@ -127,17 +130,6 @@ class Maze():
 		
 		path.reverse()
 		return path
-	
-	def _register_tile(self, type: TileType, position: i2) -> MazeTile:
-		tile = MazeTile(type, position, self)
-
-		match type:
-			case TileType.GOAL:
-				self.end = tile
-			case TileType.START:
-				self.start = tile
-
-		return tile
 
 	def __getitem__(self, idx: i2) -> MazeTile:
 		return self.tiles[idx.y][idx.x]
@@ -146,22 +138,36 @@ class Maze():
 		return '\n'.join(' '.join(tile.type.value for tile in row) for row in self.tiles)
 	
 
+def to_tile(cell: str, position: i2, maze: Maze) -> MazeTile:
+	type = TileType(cell)
+	tile = MazeTile(type, position, maze)
+
+	match type:
+		case TileType.START:
+			maze.start = tile
+		case TileType.GOAL:
+			maze.end = tile
+
+	return tile
 
 def main() -> None:
-	raw_maps: dict[str, list[str]] = dict()
+	maps: dict[str, Maze] = dict()
 	current_map = ''
+	y = 0
 
 	with open('input.txt', 'r', encoding='utf8') as file:
 
 		for line in filter(truth, map(methodcaller('replace', ' ', ''), map(str.strip, file))):
 			if len(line) == 1:
-				raw_maps[line] = []
+				maps[line] = Maze()
 				current_map = line
+				y = 0
 				continue
 
-			raw_maps[current_map].append(line)
+			maps[current_map].tiles.append([to_tile(cell, i2(x, y), maps[current_map]) for x, cell in enumerate(line)])
+			y += 1
 
-	maps = dict((k, Maze(v)) for k,v in raw_maps.items())
+	# maps = dict((k, Maze(v)) for k,v in maps.items())
 
 	for k,v in maps.items():
 		# print(k, v, sep='\n')
