@@ -184,7 +184,7 @@ def main() -> None:
 
 	for k,v in maps.items():
 		# print(k, v, sep='\n')
-		print(k, f'S {" ".join(direction.name[0] for direction in v.solve_a_star())} G', sep='\n')
+		print(k, f'S {" ".join(direction.name[0] for direction in v.solve_a_star())} G', sep='\n', end='\n\n')
 
 if __name__ == '__main__':
 	main()
