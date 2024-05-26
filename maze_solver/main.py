@@ -183,8 +183,8 @@ def main() -> None:
 	maps = dict((k, Maze(v)) for k,v in raw_maps.items())
 
 	for k,v in maps.items():
-		print(k, v, sep='\n')
-		print(f'S {" ".join(direction.name[0] for direction in v.solve_a_star())} G')
+		# print(k, v, sep='\n')
+		print(k, f'S {" ".join(direction.name[0] for direction in v.solve_a_star())} G', sep='\n')
 
 if __name__ == '__main__':
 	main()
