@@ -14,6 +14,17 @@ sebesség: 15m/s
 
 sebesség képlet átalakítva: s = v * t => vonat hossza = 75m
 
+megtett út = 300 + x
+eltelt idő = 20s
+v = 15 + 0.05x
+x = (15 + 0.05x) * 5
+x = 75 + 0.25x
+0.75x=75
+x=100
+v=20
+
+
+
 ########################################
 
 2:
@@ -135,7 +146,7 @@ másik lehetőség: 0, 5
 
 ########################################
 
-5: !incorrect
+5:
 xx1 2 x(c;6)
 5
 #(0;4)
