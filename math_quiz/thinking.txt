@@ -1,19 +1,4 @@
-1: !incorrect
-vonat sebessége: v
-megtett út: 300m
-eltelt idő: 20s
-
-sebesség képlet: v = s/t => a vonat sebessége = 15m/s
-
-
-következő részt egyszerűbb megoldani ha úgy gondolkodunk, hogy a lámpa mozgott volna, nem a vonat
-
-vonat hossza: s
-eltelt idő: 5s
-sebesség: 15m/s
-
-sebesség képlet átalakítva: s = v * t => vonat hossza = 75m
-
+1:
 megtett út = 300 + x
 eltelt idő = 20s
 v = 15 + 0.05x
@@ -22,8 +7,6 @@ x = 75 + 0.25x
 0.75x=75
 x=100
 v=20
-
-
 
 ########################################
 
@@ -71,6 +54,8 @@ megoldás:
 # # # # # # # # # # # # # #
 
 14*6*6 = 504
+
+ha csak a 8-as kockát vágjuk ki, 512
 
 ########################################
 
