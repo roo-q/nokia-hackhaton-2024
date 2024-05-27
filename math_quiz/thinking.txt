@@ -144,24 +144,19 @@ xx1 2 x(c;6)
 terület: 7
 0<c<3
 
-oab derékszögű háromszög
+négyzet területe = 18
+maradék 3 3szög területe = 11
 
-ab távolság= 5
+háromszögek:  terület
+A(0;6)C    :  2x/2
+AB(0;0)    :  12/2
+C(6;3)B    : (18-6x)/2
 
-t=(a*b)/2
-7=(a*5)/2
-14=5a
-a=2.8
+x+6+9-3x=11
+15-2x=11
+-2x=-4
+x=2
 
-ac távolság= 2.8
-
-a pontból egy 2.8 cm rádiuszos kör a 2 és a -2 helyeken megy át a y=6 on
-
-c=(2;6)
-
-2^2+x^2=2.8^2
-x = 1.9595917942265422
-c = 1.9595917942265422
 ########################################
 
 6:
