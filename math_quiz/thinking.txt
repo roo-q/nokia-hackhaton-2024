@@ -1,4 +1,4 @@
-1:
+1: !incorrect
 vonat sebessége: v
 megtett út: 300m
 eltelt idő: 20s
@@ -135,7 +135,7 @@ másik lehetőség: 0, 5
 
 ########################################
 
-5:
+5: !incorrect
 xx1 2 x(c;6)
 5
 #(0;4)
@@ -163,6 +163,9 @@ a pontból egy 2.8 cm rádiuszos kör a 2 és a -2 helyeken megy át a y=6 on
 
 c=(2;6)
 
+2^2+x^2=2.8^2
+x = 1.9595917942265422
+c = 1.9595917942265422
 ########################################
 
 6:
