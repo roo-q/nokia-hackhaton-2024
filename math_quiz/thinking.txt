@@ -1,0 +1,270 @@
+1:
+vonat sebessége: v
+megtett út: 300m
+eltelt idő: 20s
+
+sebesség képlet: v = s/t => a vonat sebessége = 15m/s
+
+
+következő részt egyszerűbb megoldani ha úgy gondolkodunk, hogy a lámpa mozgott volna, nem a vonat
+
+vonat hossza: s
+eltelt idő: 5s
+sebesség: 15m/s
+
+sebesség képlet átalakítva: s = v * t => vonat hossza = 75m
+
+########################################
+
+2:
+
+kocka 2cm (2db):
+# #
+# #
+
+kocka 6cm (1db):
+# # # # # #
+# # # # # #
+# # # # # #
+# # # # # #
+# # # # # #
+# # # # # #
+
+kocka 8cm (1db):
+# # # # # # # #
+# # # # # # # #
+# # # # # # # #
+# # # # # # # #
+# # # # # # # #
+# # # # # # # #
+# # # # # # # #
+# # # # # # # #
+
+megoldás:
+# #
+# #
+# # # # # # # #
+# # # # # # # #
+# # # # # # # # # # # # # #
+# # # # # # # # # # # # # #
+# # # # # # # # # # # # # #
+# # # # # # # # # # # # # #
+# # # # # # # # # # # # # #
+# # # # # # # # # # # # # #
+
+# # # # # # # # # # # # # #
+# # # # # # # # # # # # # #
+# # # # # # # # # # # # # #
+# # # # # # # # # # # # # #
+# # # # # # # # # # # # # #
+# # # # # # # # # # # # # #
+
+14*6*6 = 504
+
+########################################
+
+3:
+           switch
+S------------|--------------------G
+-----------------------------------20km
+
+ju: bicikli (10 km/h) -> gyalog  (4  km/h)
+ja: gyalog  (5  km/h) -> bicikli (12 km/h)
+
+timeline:
+
+start - x óra:
+ju 10km/h
+ja 5km/h
+
+x - 2x óra:
+ju 4km/h
+ja 5km/h
+
+2x - y óra:
+ju 4km/h
+ja 12km/h
+
+ju:
+10x+4x+4y=20
+14x+   4y=20
+ja:
+5x+5x+12y=20
+10x+  12y=20
+
+      12y=20-10x
+14x+(20-10x)/3=20
+42x+20-10x    =60
+32x           =40
+             x=1.25
+
+17.5 + 4y =20
+        4y=0.625
+
+ell:
+10*1.25+4*1.25+4*0.625=20
+2*5*1.25+12*0.625=20
+
+########################################
+
+4:
+
+x^2 + y^2 = r^2
+
+r=5
+
+számhármas: 3,4,5;
+másik lehetőség: 0, 5
+
+összes lehetőség
+ 3; 4
+ 4; 3
+-3; 4
+ 4;-3
+ 3;-4
+-4; 3
+-3;-4
+-4;-3
+ 0; 5
+ 5; 0
+ 0;-5
+-5; 0
+
+összesen:
+12
+
+########################################
+
+5:
+xx1 2 x(c;6)
+5
+#(0;4)
+3
+2
+1
+0 1 2 #
+       (3;0)
+
+terület: 7
+0<c<3
+
+oab derékszögű háromszög
+
+ab távolság= 5
+
+t=(a*b)/2
+7=(a*5)/2
+14=5a
+a=2.8
+
+ac távolság= 2.8
+
+a pontból egy 2.8 cm rádiuszos kör a 2 és a -2 helyeken megy át a y=6 on
+
+c=(2;6)
+
+########################################
+
+6:
+
+*-----|-----*
+      ^
+      eddig van hozzá közelebb (az út 50%-a)
+
+
+1   2   3   4   5   6   7
+1<- 2   3 ->
+
+<--2  -1->0<- 1   2 ->
+egy vonalon 2 ember lőhet ugyan arra az emberre
+hány vonal lehet?
+
+egy ember = (0;0)
+távolság egy (x;y) ponttól: x^2 + y^2 (gyök alatt, de az nem fontos)
+
+egy (0;0)-n átmenő egyenesen max 2 ember lélozhat (0;0)-ra
+
+minimum 4: x,y tengely
+
+2 tengely közé átlós egyenesen pontot úgy kell rakni, hogy a távolsága az x és az y egyenesen lévő ponttól kisebb legyen mint a (0;0) ponttól
+e közé az egyenes közé és bármely tengely közé nem lehet mégegy olyan egyenest rakni, amin bármely pont közelebb van a (0;0)-hoz mint a tengelyen lévő ponthoz vagy ehez az egyenesen lévő ponthoz
+
+ebből következik: 8
+
+########################################
+
+7:
+piros: x
+zöld: y
+kék: z
+
+összesen: 30
+
+zöld > piros
+zöld > kék
+
+23: összes zöld + összes (piros vagy kék) + 1 (piros vagy kék)
+21: összes zöld + összes kék + 1 piros
+
+piros > kék
+
+zöld + kék = 20
+30 - 20 = 10
+
+23 = zöld + 10(AKA piros) + 1 kék
+
+zöld: 12
+piros: 10
+kék: 8
+
+########################################
+
+8:
+
+1x1 négyzet: #
+
+# # # # #
+# *   * #
+#  * *  #
+# *   * #
+# # # # #
+
+n*n-es négyzet
+átlóban lévő kis négyzetek: *
+
+átlók hossza: n
+2 átló van: 2n
+ha n páratlan: 2n-1
+
+2n = 85
+n=42.5
+
+2n-1=85
+2n=86
+n=43
+
+terület: n*n
+
+
+########################################
+
+9:
+
+sajyát nemzetiségnél: +2
+küpönbözőnél: +1;+1
+
+senki sem köszön önmagának
+angolok száma: x
+magyarok száma: y
+
+egy angol köszönési száma : x - 1 + y
+egy magyar köszönési száma: y - 1 + x
+
+összes angol  (198) = x(x - 1 + y) = x^2 - x + xy
+összes magyar (308) = y(y - 1 + x) = y^2 - y + xy
+
+brute force:
+	for a in range (14): # <- ennél biztosan kisebb lessz mivel sqrt(198) = 14.07
+		for m in range(17): # <- ennél biztosan kisebb lessz mivel sqrt(308) = 17.55
+			if a ** 2 - a + a * m == 198 and m ** 2 - m + m * a == 308:
+				print(f'{a=}\n{m=}')
